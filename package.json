@@ -1,0 +1,20 @@
+{
+  "name": "kwork-orders-check",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "https://github.com/bilbords",
+  "license": "ISC",
+  "description": "This Node.the js script allows you to check for new orders every N seconds",
+  "dependencies": {
+    "puppeteer": "^21.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "type": "module"
+}
