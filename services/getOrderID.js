@@ -24,18 +24,33 @@ async function getOrderID(page, orderID, browser) {
 
       const title = await element.$eval(
         '.wants-card__header-title > a[href]',
-        (el) => el.innerHTML
+        (el) => el.innerText
+      );
+      const description = await element.$eval(
+        '.breakwords.first-letter.overflow-hidden > div',
+        (el) => el.innerText
       );
       const budget = await element.$eval(
         '.wants-card__price > span[lang]',
-        (el) => parseInt(el.innerHTML.replace(/(&nbsp;|\s)/g, ''))
+        (el) => el.innerText
       );
+      const maxBudget = await element
+        .$eval(
+          '.wants-card__description-higher-price > span > span[lang]',
+          (el) => el.innerText
+        )
+        .catch(() => {
+          return 'Price is fixed';
+        });
+
       const link = 'https://kwork.ru/new_offer?project=' + newOrderID;
-      const url = createURL(title, budget, link);
+
+      const url = createURL(title, description, budget, maxBudget, link);
+
       fetch(url)
         .then((response) => response.json())
         .then((data) => {
-          if (data.ok === true) {
+          if (data.ok) {
             console.log('Order info was successfully sended!');
           }
         })

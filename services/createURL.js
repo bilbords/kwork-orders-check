@@ -1,11 +1,18 @@
 import { TOKEN, CHAT_ID } from '../config/config.js';
 
-function createURL(title, budget, link) {
+function createURL(title, description, budget, maxBudget, link) {
   const text = encodeURIComponent(
-    `New order!\n\nTitle: ${title}\nBudget: ${budget}₽\nMax budget: ${
-      budget * 3 + '₽'
-    }\n\nLink -> ${link}
-`
+    `
+New order!
+
+Title: ${title}
+
+Description: ${description}
+
+Budget: ${budget}
+Max budget: ${maxBudget}
+
+Link → ${link}`
   );
 
   const url =
